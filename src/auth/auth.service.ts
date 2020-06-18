@@ -23,7 +23,7 @@ export class AuthService {
   async register(data: UserDto): Promise<HttpException | { login: string }> {
     let user = await this.usersService.findOne(data.login);
     if (user) {
-      throw new HttpException({status: HttpStatus.FORBIDDEN, message: 'This username already exist'}, 403);
+      throw new HttpException({status: HttpStatus.FORBIDDEN, message: 'This email already exist'}, 403);
     }
     user = await this.usersService.createUser(data);
     return {
